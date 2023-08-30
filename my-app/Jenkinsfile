@@ -2,32 +2,44 @@ pipeline {
     agent any
 
     tools {
-        maven "MAVEN"
-        jdk "JDK"
+        maven "Maven"
     }
-
     stages {
-        stage('Initialize'){
+        stage('Build'){
             steps{
-                echo "PATH = ${M2_HOME}/bin:${PATH}"
-                echo "M2_HOME = /opt/maven"
+                dir("my-app"){
+                bat "mvn clean package"
+            }
             }
         }
-        stage('Build') {
+        stage('Test') {
             steps {
-                dir("/var/lib/jenkins/workspace/New_demo/my-app/") {
-                sh 'mvn -B -DskipTests clean package'
+                dir("my-app"){
+                bat 'mvn test'
                 }
-            
+            }
+    post {
+                always {
+                    dir("my-app"){
+                    junit 'target/surefire-reports/*.xml'
+                }
+                }
             }
         }
-     }
-    post {
-       always {
-          junit(
-        allowEmptyResults: true,
-        testResults: '*/test-reports/.xml'
-      )
-      }
-   } 
+        
+        stage('Deliver') {
+            steps {
+                dir("my-app"){
+                   
+            }
+            }
+        }
+        stage("Complete"){
+            steps{
+                echo "Job completed"
+            }
+        }
+    
+        
+    }
 }
