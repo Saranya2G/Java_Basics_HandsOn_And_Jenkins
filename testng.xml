@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test name="Test">
+		<classes>
+			<class name="testCases.Logintestcase"></class>
+			</classes>
+	</test>
+	<test name="product">
+		<classes>
+			<class name ="testCases.ProductTC"></class>
+			</classes>
+	</test>
+	
+	<test name = "cart">
+		<classes>
+			<class name ="testCases.AddcartTC"></class>
+		</classes>
+	</test>
+</suite>
