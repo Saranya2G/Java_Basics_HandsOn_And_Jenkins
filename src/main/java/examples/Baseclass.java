@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class Baseclass {
 
-	String driverpath = "C:\\Users\\Admin\\eclipse-workspace\\Demoproject\\Chromedriver\\chromedriver.exe";
+	String driverpath = "C:\\Users\\Aaludra_05\\Documents\\selenium_jenkins_demo\\Java_Basics_HandsOn_And_Jenkins\\Chromedriver";
 	String url = "https://stackoverflow.com/";
 	WebDriver driver;
 	
