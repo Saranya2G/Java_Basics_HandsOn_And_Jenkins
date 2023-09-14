@@ -5,5 +5,5 @@ services:
     container_name: demo-devops
     ports:
      - '8083:8083'
-environment:
-- spring.datasource.url= jdbc:mysql://localhost:3306/bookstore
+    environment:
+      - spring.datasource.url= jdbc:mysql://localhost:3306/bookstore
