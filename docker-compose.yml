@@ -1,7 +1,7 @@
 version: '1'
 services:
   backend-java:
-    image: 'docker.io/saran0809/sample-devops:latest'
+    image: 'docker.io/saran0809/demo-devops:latest'
     container_name: demo-devops
     ports:
      - '8082:8082'
