@@ -2,7 +2,7 @@ version: '1'
 services:
   backend-java:
     image: 'docker.io/saran0809/sample-devops:latest'
-    container_name: sample-devops
+    container_name: demo-devops
     ports:
      - '8083:8083'
 environment:
