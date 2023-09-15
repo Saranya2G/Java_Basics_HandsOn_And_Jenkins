@@ -7,8 +7,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: bookstore
-    networks:
-      springboot-mysql-net: null
   backend-java:
     image: docker.io/saran0809/demo-devops:latest
     container_name: demo-devops
