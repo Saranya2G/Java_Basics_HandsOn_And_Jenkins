@@ -1,11 +1,18 @@
 version: '1'
 services:
+ mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: bookstore
+    networks:
+      springboot-mysql-net:
   backend-java:
     image: 'docker.io/saran0809/demo-devops:latest'
     container_name: demo-devops
     ports:
      - '8082:8082'
-    environment:
-      - spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bookstore?useSSL=false
-      - spring.datasource.username=root
-      - spring.datasource.password=123456
+    depends_on:
+      - mysqldb
+   
