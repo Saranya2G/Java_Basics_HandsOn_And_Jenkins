@@ -4,6 +4,8 @@ services:
   mysqldb:
     container_name: mysqldb
     image: mysql:latest
+    volumes:
+      - C:/Users/Aaludra_05/Documents/db:/var/lib/mysql
     ports:
      - 3307:3306
     environment:
