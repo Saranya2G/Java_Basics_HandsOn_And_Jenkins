@@ -28,8 +28,10 @@ pipeline{
                    }
                }
            }
-           stage("Removing the docker container"){
-               steps{
+           stage("check container"){
+                   when{
+                       expression{
+                           return
                   bat "docker stop mysqldb"
                    echo "mysqldb container is stopped"
                   bat "docker stop demo-devops"
@@ -40,14 +42,13 @@ pipeline{
                    echo "demo-devops container is removed"
                }
            }
-            stage("Run Docker Image"){
                steps{
-                   script{
-                       bat "docker compose up -d"
-                       bat "docker compose ps"
-                   }
+                   echo "start the docker compose" 
+                    bat "docker compose up -d"
+                    bat "docker compose ps"
+                    echo "started"
                }
            }
-           
+            
        }
 }
