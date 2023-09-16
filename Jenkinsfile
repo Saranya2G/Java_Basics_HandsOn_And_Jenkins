@@ -31,7 +31,7 @@ pipeline{
            stage("check container"){
                    when{
                        expression{
-                           return containerExsist(
+                           return containerExsist
                   bat "docker stop mysqldb"
                    echo "mysqldb container is stopped"
                   bat "docker stop demo-devops"
@@ -40,14 +40,19 @@ pipeline{
                    echo "mysqldb container is removed"
                   bat "docker rm demo-devops"
                    echo "demo-devops container is removed"
-                               )
+                               
                }
            }
                steps{
-                   echo "start the docker compose" 
-                    bat "docker compose up -d"
-                    bat "docker compose ps"
-                    echo "started"
+                    echo "Not exsist"
+               }
+           }
+           stage("Run Docker Image"){
+               steps{
+                   script{
+                       bat "docker compose up -d"
+                       bat "docker compose ps"
+                   }
                }
            }
             
