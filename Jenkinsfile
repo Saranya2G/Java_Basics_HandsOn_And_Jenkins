@@ -1,8 +1,5 @@
 pipeline{
     agent any
-    parameters {
-        booleanParam(name: 'skip_test', defaultValue: false, description: 'Set to true to skip the test stage')
-    }
     tools {
         maven "Maven"
     }
@@ -31,11 +28,6 @@ pipeline{
                    }
                }
            }
-           stage("Removing the docker container"){
-               steps{
-                   execute_stage('Removing the docker container', params.skip_test) 
-               }
-           }
             stage("Run Docker Image"){
                steps{
                    script{
@@ -46,14 +38,4 @@ pipeline{
            }
        }
 }
-           def execute_stage(Removing the docker container, skip) {
-            stage(Removing the docker container) {
-            if(skip) {
-            echo "Skipping ${Removing the docker container} stage"
-            return
-        }
-        // Add steps to test the application
-    }
-}
-           
-       
+            
