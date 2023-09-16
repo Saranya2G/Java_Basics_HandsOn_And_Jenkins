@@ -28,26 +28,7 @@ pipeline{
                    }
                }
            }
-           stage("check container"){
-                   when{
-                       expression{
-                           return containerExsist('mysqldb,demo-devops')
-                  bat "docker stop mysqldb"
-                   echo "mysqldb container is stopped"
-                  bat "docker stop demo-devops"
-                   echo "demo-devops container is stopped"
-                  bat "docker rm mysqldb"
-                   echo "mysqldb container is removed"
-                  bat "docker rm demo-devops"
-                   echo "demo-devops container is removed"
-                               
-               }
-           }
-               steps{
-                    echo "Not exsist"
-               }
-           }
-           stage("Run Docker Image"){
+            stage("Run Docker Image"){
                steps{
                    script{
                        bat "docker compose up -d"
@@ -55,6 +36,6 @@ pipeline{
                    }
                }
            }
-            
+           
        }
 }
