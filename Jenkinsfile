@@ -31,7 +31,7 @@ pipeline{
            stage("check container"){
                    when{
                        expression{
-                           return containerExsist
+                           return containerExsist('mysqldb,demo-devops')
                   bat "docker stop mysqldb"
                    echo "mysqldb container is stopped"
                   bat "docker stop demo-devops"
