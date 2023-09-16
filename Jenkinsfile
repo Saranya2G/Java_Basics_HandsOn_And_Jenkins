@@ -33,7 +33,10 @@ pipeline{
                 input message: 'Want to skip the Check container exsist stage?', ok: 'Yes',
                   parameters: [booleanParam(name: 'skip_Check_container_exsist', defaultValue: false)]
                 script {
+                     echo "started condition"
+                     echo "${params.skip_Check_container_exsist}"
                     if(params.skip_Check_container_exsist) {
+                        echo "inside the condition"
                     bat "docker stop mysqldb"
                        echo "mysqldb container is stopped"
                       bat "docker stop demo-devops"
@@ -44,6 +47,7 @@ pipeline{
                        echo "demo-devops container is removed"
                         return
                     }
+                    
                 }
                     echo "already started"
             }
