@@ -28,6 +28,18 @@ pipeline{
                    }
                }
            }
+           stage("Removing the docker container"){
+               steps{
+                  bat "docker stop mysqldb"
+                   echo "mysqldb container is stopped"
+                  bat "docker stop demo-devops"
+                   echo "demo-devops container is stopped"
+                  bat "docker rm mysqldb"
+                   echo "mysqldb container is removed"
+                  bat "docker rm demo-devops"
+                   echo "demo-devops container is removed"
+                
+           }
             stage("Run Docker Image"){
                steps{
                    script{
