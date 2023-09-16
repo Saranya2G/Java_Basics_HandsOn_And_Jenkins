@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    parameters {
+        booleanParam(name: 'skip_test', defaultValue: false, description: 'Set to true to skip the test stage')
+    }
     tools {
         maven "Maven"
     }
@@ -28,30 +31,18 @@ pipeline{
                    }
                }
            }
-           stage("Stage with input") {
-            steps {
-              def userInput = false
-            script {
-                 userInput = input(id: 'Proceed1', message: 'Promote build?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']])
-                echo 'userInput: ' + userInput
-
-                if(userInput == true) {
-                echo "Go to next stage"
-                } else {
-                    bat "docker stop mysqldb"
-                       echo "mysqldb container is stopped"
-                      bat "docker stop demo-devops"
-                       echo "demo-devops container is stopped"
-                      bat "docker rm mysqldb"
-                       echo "mysqldb container is removed"
-                      bat "docker rm demo-devops"
-                       echo "demo-devops container is removed"
-                echo "Container was aborted."
+     stage('Test') {
+            when { 
+                expression {
+                    params.skip_test != true
+                    echo "true"
+                } 
             }
-
-        }    
-    }  
-}
+            steps {
+                echo "False'
+               
+            }
+        }
            stage("Run Docker Image"){
                steps{
                    script{
