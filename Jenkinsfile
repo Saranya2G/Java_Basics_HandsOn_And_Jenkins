@@ -34,7 +34,7 @@ pipeline{
                   parameters: [booleanParam(name: 'skip_Check_container_exsist', defaultValue: false)]
                 script {
                      echo "started condition"
-                     echo "${params.skip_Check_container_exsist}"
+                     echo "${params.skip_Check_container_exsist.toString().toBoolean()}"
                     if(params.skip_Check_container_exsist) {
                         echo "inside the condition"
                     bat "docker stop mysqldb"
