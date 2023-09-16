@@ -34,11 +34,7 @@ pipeline{
                   parameters: [booleanParam(name: 'skip_Check_container_exsist', defaultValue: false)]
                 script {
                     if(params.skip_Check_container_exsist) {
-                      echo 'Deteeing the container'
-                        return
-                    }
-                }
-                      bat "docker stop mysqldb"
+                    bat "docker stop mysqldb"
                        echo "mysqldb container is stopped"
                       bat "docker stop demo-devops"
                        echo "demo-devops container is stopped"
@@ -46,17 +42,12 @@ pipeline{
                        echo "mysqldb container is removed"
                       bat "docker rm demo-devops"
                        echo "demo-devops container is removed"
+                        return
+                    }
+                }
+                     bat "docker compose up -d"
+                     bat "docker compose ps"
             }
             }   
-        
-            stage("Run Docker Image"){
-               steps{
-                   script{
-                       bat "docker compose up -d"
-                       bat "docker compose ps"
-                   }
-               }
-           }
-           
        }
 }
