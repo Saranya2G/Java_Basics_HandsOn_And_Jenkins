@@ -1,9 +1,5 @@
 pipeline{
     agent any
-    parameters {
-        input message: 'Do you want to skip the stage ?', ok: 'Yes',
-        parameters:[booleanParam(name: 'skip_test', defaultValue: false, description: 'Set to true to skip the test stage')]
-    }
     tools {
         maven "Maven"
     }
@@ -32,19 +28,31 @@ pipeline{
                    }
                }
            }
-     stage('Test') {
-            when { 
-                expression {
-                    params.skip_test != true
-                    echo "true"
-                } 
-            }
+           stage('Check container exsist') {
             steps {
-                echo "False"
-               
+                input message: 'Want to skip the Check container exsist stage?', ok: 'Yes',
+                  parameters: [booleanParam(name: 'skip_Check_container_exsist', defaultValue: false)]
+                script {
+                    echo '${params.skip_Check_container_exsist == true}
+                    if(params.skip_Check_container_exsist == true) {
+                        echo 'Inside'
+                      echo 'Deleting the container'
+                        return
+                    }
+                }
+                      bat "docker stop mysqldb"
+                       echo "mysqldb container is stopped"
+                      bat "docker stop demo-devops"
+                       echo "demo-devops container is stopped"
+                      bat "docker rm mysqldb"
+                       echo "mysqldb container is removed"
+                      bat "docker rm demo-devops"
+                       echo "demo-devops container is removed"
             }
-        }
-           stage("Run Docker Image"){
+           
+            }   
+        
+            stage("Run Docker Image"){
                steps{
                    script{
                        bat "docker compose up -d"
@@ -52,6 +60,6 @@ pipeline{
                    }
                }
            }
-            }   
+           
        }
-
+}
