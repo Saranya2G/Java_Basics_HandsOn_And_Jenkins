@@ -2,7 +2,7 @@ pipeline{
     agent any
     parameters {
         input message: 'Do you want to skip the stage ?', ok: 'Yes',
-        booleanParam(name: 'skip_test', defaultValue: false, description: 'Set to true to skip the test stage')
+        parameters:[booleanParam(name: 'skip_test', defaultValue: false, description: 'Set to true to skip the test stage')]
     }
     tools {
         maven "Maven"
