@@ -28,6 +28,26 @@ pipeline{
                    }
                }
            }
+           stage('Check container exsist') {
+            steps {
+                input message: 'Want to skip the Check container exsist stage?', ok: 'Yes',
+                  parameters: [booleanParam(name: 'skip_Check_container_exsist', defaultValue: false)], timeout: time(minutes: 5))
+                script {
+                    if(params.skip_Check_container_exsist) {
+                      echo 'Deteeing the container'
+                        return
+                    }
+                }
+                      bat "docker stop mysqldb"
+                       echo "mysqldb container is stopped"
+                      bat "docker stop demo-devops"
+                       echo "demo-devops container is stopped"
+                      bat "docker rm mysqldb"
+                       echo "mysqldb container is removed"
+                      bat "docker rm demo-devops"
+                       echo "demo-devops container is removed"
+            }
+        }
             stage("Run Docker Image"){
                steps{
                    script{
