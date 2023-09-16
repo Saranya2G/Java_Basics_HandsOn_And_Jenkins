@@ -30,7 +30,7 @@ pipeline{
            }
            stage('Check container exsist') {
             steps {
-                input message: 'Want to skip the Check container exsist stage?', ok: 'Yes',
+                input message: 'Want to skip the Check container exsist stage?', ok: 'Yes'
                   parameters: [booleanParam(name: 'skip_Check_container_exsist', defaultValue: false)]
                 script {
                     if(params.skip_Check_container_exsist) {
@@ -45,8 +45,7 @@ pipeline{
                         return
                     }
                 }
-                     bat "docker compose up -d"
-                     bat "docker compose ps"
+                    echo "already started"
             }
             }   
        }
