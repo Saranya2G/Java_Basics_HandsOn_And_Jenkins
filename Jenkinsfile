@@ -44,6 +44,8 @@ pipeline{
                    }
                }
            }
+       }
+}
            def execute_stage(Removing the docker container, skip) {
             stage(Removing the docker container) {
             if(skip) {
@@ -54,5 +56,4 @@ pipeline{
     }
 }
            
-       }
-}
+       
