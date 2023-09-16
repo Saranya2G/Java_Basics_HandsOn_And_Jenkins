@@ -38,7 +38,7 @@ pipeline{
                    echo "mysqldb container is removed"
                   bat "docker rm demo-devops"
                    echo "demo-devops container is removed"
-                
+               }
            }
             stage("Run Docker Image"){
                steps{
