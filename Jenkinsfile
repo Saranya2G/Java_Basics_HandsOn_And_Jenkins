@@ -31,7 +31,7 @@ pipeline{
            stage('Check container exsist') {
             steps {
                 input message: 'Want to skip the Check container exsist stage?', ok: 'Yes',
-                  parameters: ([booleanParam(name: 'skip_Check_container_exsist', defaultValue: false)], timeout: time(minutes: 5))
+                  parameters: [booleanParam(name: 'skip_Check_container_exsist', defaultValue: false)]
                 script {
                     if(params.skip_Check_container_exsist) {
                       echo 'Deteeing the container'
