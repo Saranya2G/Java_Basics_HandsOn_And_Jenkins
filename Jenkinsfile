@@ -35,7 +35,7 @@ pipeline{
                 script {
                      echo "started condition"
                      echo "${params.skip_Check_container_exsist.toString().toBoolean()}"
-                    if(params.skip_Check_container_exsist) {
+                    if(params.skip_Check_container_exsist.toString().toBoolean()) {
                         echo "inside the condition"
                     bat "docker stop mysqldb"
                        echo "mysqldb container is stopped"
