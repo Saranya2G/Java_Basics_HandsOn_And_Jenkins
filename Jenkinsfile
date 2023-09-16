@@ -37,10 +37,9 @@ pipeline{
                     if(params.skip_Check_container_exsist == true) {
                         echo 'Inside'
                       echo 'Deleting the container'
-                        return
-                    }
-                }
-                      bat "docker stop mysqldb"
+                        
+                    }else{
+                        bat "docker stop mysqldb"
                        echo "mysqldb container is stopped"
                       bat "docker stop demo-devops"
                        echo "demo-devops container is stopped"
@@ -48,8 +47,10 @@ pipeline{
                        echo "mysqldb container is removed"
                       bat "docker rm demo-devops"
                        echo "demo-devops container is removed"
+                }
+                      
             }
-           
+            }
             }   
         
             stage("Run Docker Image"){
