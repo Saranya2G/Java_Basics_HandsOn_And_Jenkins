@@ -28,15 +28,16 @@ pipeline{
                    }
                }
            }
-           stage('Check container exsist') {
+           stage("Stage with input") {
             steps {
-                input message: 'Want to skip the Check container exsist stage?', ok: 'Yes',
-                  parameters: [booleanParam(name: 'skip_Check_container_exsist', defaultValue: false)]
-                script {
-                     echo "started condition"
-                     echo "${params.skip_Check_container_exsist.toBoolean()}"
-                    if(params.skip_Check_container_exsist.toBoolean()) {
-                        echo "inside the condition"
+              def userInput = false
+            script {
+                def userInput = input(id: 'Proceed1', message: 'Promote build?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']])
+                echo 'userInput: ' + userInput
+
+                if(userInput == true) {
+                echo "Go to next stage"
+                } else {
                     bat "docker stop mysqldb"
                        echo "mysqldb container is stopped"
                       bat "docker stop demo-devops"
@@ -45,12 +46,20 @@ pipeline{
                        echo "mysqldb container is removed"
                       bat "docker rm demo-devops"
                        echo "demo-devops container is removed"
-                        return
-                    }
-                    
-                }
-                    echo "already started"
+                echo "Container was aborted."
             }
+
+        }    
+    }  
+}
+           stage("Run Docker Image"){
+               steps{
+                   script{
+                       bat "docker compose up -d"
+                       bat "docker compose ps"
+                   }
+               }
+           }
             }   
        }
-}
+
