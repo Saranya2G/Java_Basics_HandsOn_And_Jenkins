@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import pageObject.Productpage;
 
-public class ProductTC extends Baseclass1{
+public class ProductTc extends Baseclass1{
 	@Test
 	public void product() throws InterruptedException {
 		/*Logintestcase li = new Logintestcase();

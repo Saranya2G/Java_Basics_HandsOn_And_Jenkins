@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import pageObject.Addcart;
 
-public class AddcartTC extends Baseclass1 {
+public class AddcartTc extends Baseclass1 {
 	@Test
 	public void cart() throws InterruptedException {
 		/*ProductTC PT = new ProductTC();

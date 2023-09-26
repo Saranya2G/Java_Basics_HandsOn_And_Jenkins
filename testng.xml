@@ -8,13 +8,13 @@
 	</test>
 	<test name="product">
 		<classes>
-			<class name ="testCases.ProductTC"></class>
+			<class name ="testCases.ProductTc"></class>
 			</classes>
 	</test>
 	
 	<test name = "cart">
 		<classes>
-			<class name ="testCases.AddcartTC"></class>
+			<class name ="testCases.AddcartTc"></class>
 		</classes>
 	</test>
 </suite>
