@@ -10,12 +10,12 @@ public class ProductTC extends Baseclass1{
 	public void product() throws InterruptedException {
 		/*Logintestcase li = new Logintestcase();
 		li.login();*/
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		PageFactory.initElements(driver, Productpage.class);
 		Productpage.product.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		Productpage.addcart.click();
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		
 	}
 

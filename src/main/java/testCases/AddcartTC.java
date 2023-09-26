@@ -12,9 +12,9 @@ public class AddcartTC extends Baseclass1 {
 		PT.product();*/
 		PageFactory.initElements(driver, Addcart.class);
 		Addcart.Container.click();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		Addcart.remove.click();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 	}
 
 }

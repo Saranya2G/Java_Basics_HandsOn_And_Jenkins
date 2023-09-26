@@ -13,7 +13,7 @@ public class Productpage {
 		this.driver = driver;
 	}
 	
-	@FindBy(xpath = "//div[text() = 'Sauce Labs Backpack']")
+	@FindBy(id = "item_4_title_link")
 	public static WebElement product;
 	
 	@FindBy(id ="add-to-cart-sauce-labs-backpack")
